@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:id="@+id/thakorji"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RadioButton
+        android:id="@+id/thakorjiuk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UK" />
+
+    <RadioButton
+        android:id="@+id/thakorjimogri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mogri" />
+
+    <RadioButton
+        android:id="@+id/thakorjiusa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USA" />
+
+    
+    <RadioButton
+        android:id="@+id/thakorjikhar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kharghar" />
+    
+    <RadioButton
+        android:id="@+id/thakorjisurat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Surat" />
+    
+    
+</RadioGroup>

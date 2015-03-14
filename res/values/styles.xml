@@ -1,0 +1,35 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+            <item name="android:actionBarStyle">@style/MyActionBar</item>   
+    </style>
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="android:background">@color/bluebackground</item>
+        <item name="android:titleTextStyle">@style/MyTextAppearance</item>
+    </style>
+    <style name="MyTextAppearance" >
+	    <item name="android:textColor">@color/white</item>
+	</style>
+    <style name="label">
+	    <item name="android:textColor">@color/textcolor</item>
+	    <item name="android:textSize">18dp</item>
+	    <item name="android:shadowColor">#33d8dadd</item>
+	    <item name="android:shadowDx">2</item>
+	    <item name="android:shadowDy">-2</item>
+	    <item name="android:shadowRadius">1.5</item>
+    </style>
+
+</resources>
