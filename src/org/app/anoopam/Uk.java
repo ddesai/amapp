@@ -24,11 +24,9 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -42,11 +40,6 @@ import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Base64;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-
-
 
 public class Uk  extends FragmentActivity{
 	

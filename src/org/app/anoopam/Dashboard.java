@@ -1,16 +1,9 @@
 package org.app.anoopam;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -18,7 +11,6 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.os.Vibrator;
 import android.view.View;
-import android.widget.Toast;
 
 public class Dashboard extends Activity{ 
 	

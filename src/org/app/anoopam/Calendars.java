@@ -24,7 +24,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -43,9 +42,8 @@ import android.support.v4.view.ViewPager;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-public class Calendars  extends FragmentActivity{
+public class Calendars extends FragmentActivity {
 	public static final String PREFS_NAME = "AM";
 	TestFragmentAdapter mAdapter;
     ViewPager mPager;
@@ -63,7 +61,6 @@ public class Calendars  extends FragmentActivity{
 		}
 		Calendar rightNow = Calendar.getInstance();
 		SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-		SharedPreferences.Editor editor = settings.edit();
 		
 		 final Bitmap[] offerImagesB = {
 

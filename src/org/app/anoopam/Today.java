@@ -1,7 +1,6 @@
 package org.app.anoopam;
 
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.TabActivity;
 import android.content.Context;
@@ -15,14 +14,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TabHost;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class Today  extends TabActivity{ 
@@ -52,7 +49,7 @@ public class Today  extends TabActivity{
 		 Intent intent; // Reusable Intent for each tab
 		 
 		 // Create an Intent to launch an Activity for the tab (to be reused)
-		 intent = new Intent().setClass(this, Uk.class);//uk
+		 intent = new Intent(getBaseContext(), org.app.anoopam.Uk.class);//uk
 		 spec = tabHost.newTabSpec("home")
 		 .setIndicator("UK")		 
 		 .setContent(intent);		 

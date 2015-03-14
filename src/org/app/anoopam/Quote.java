@@ -39,8 +39,6 @@ import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 public class Quote extends Activity{ 
 	
