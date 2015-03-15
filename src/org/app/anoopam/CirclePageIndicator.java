@@ -41,7 +41,7 @@ import static android.widget.LinearLayout.VERTICAL;
 /**
  * Draws circles (one for each view). The current view position is filled and
  * others are only stroked.
- */ 
+ */
 public class CirclePageIndicator extends View implements PageIndicator {
     private static final int INVALID_POINTER = -1;
 
@@ -64,7 +64,6 @@ public class CirclePageIndicator extends View implements PageIndicator {
     private int mActivePointerId = INVALID_POINTER;
     private boolean mIsDragging;
 
-
     public CirclePageIndicator(Context context) {
         this(context, null);
     }
@@ -74,9 +73,10 @@ public class CirclePageIndicator extends View implements PageIndicator {
     }
 
     @SuppressWarnings("deprecation")
-	public CirclePageIndicator(Context context, AttributeSet attrs, int defStyle) {
+    public CirclePageIndicator(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        if (isInEditMode()) return;
+        if (isInEditMode())
+            return;
 
         //Load defaults from resources
         final Resources res = getResources();
@@ -106,7 +106,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
 
         Drawable background = a.getDrawable(R.styleable.CirclePageIndicator_android_background);
         if (background != null) {
-          setBackgroundDrawable(background);
+            setBackgroundDrawable(background);
         }
 
         a.recycle();
@@ -114,7 +114,6 @@ public class CirclePageIndicator extends View implements PageIndicator {
         final ViewConfiguration configuration = ViewConfiguration.get(context);
         mTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(configuration);
     }
-
 
     public void setCentered(boolean centered) {
         mCentered = centered;
@@ -281,7 +280,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-	public boolean onTouchEvent(android.view.MotionEvent ev) {
+    public boolean onTouchEvent(android.view.MotionEvent ev) {
         if (super.onTouchEvent(ev)) {
             return true;
         }
@@ -340,7 +339,8 @@ public class CirclePageIndicator extends View implements PageIndicator {
 
                 mIsDragging = false;
                 mActivePointerId = INVALID_POINTER;
-                if (mViewPager.isFakeDragging()) mViewPager.endFakeDrag();
+                if (mViewPager.isFakeDragging())
+                    mViewPager.endFakeDrag();
                 break;
 
             case MotionEventCompat.ACTION_POINTER_DOWN: {
@@ -459,8 +459,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
         } else {
             //Calculate the width according the views count
             final int count = mViewPager.getAdapter().getCount();
-            result = (int)(getPaddingLeft() + getPaddingRight()
-                    + (count * 2 * mRadius) + (count - 1) * mRadius + 1);
+            result = (int) (getPaddingLeft() + getPaddingRight() + (count * 2 * mRadius) + (count - 1) * mRadius + 1);
             //Respect AT_MOST value if that was what is called for by measureSpec
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
@@ -468,7 +467,6 @@ public class CirclePageIndicator extends View implements PageIndicator {
         }
         return result;
     }
-
 
     private int measureShort(int measureSpec) {
         int result;
@@ -480,7 +478,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
             result = specSize;
         } else {
             //Measure the height
-            result = (int)(2 * mRadius + getPaddingTop() + getPaddingBottom() + 1);
+            result = (int) (2 * mRadius + getPaddingTop() + getPaddingBottom() + 1);
             //Respect AT_MOST value if that was what is called for by measureSpec
             if (specMode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, specSize);
@@ -491,7 +489,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
 
     @Override
     public void onRestoreInstanceState(Parcelable state) {
-        SavedState savedState = (SavedState)state;
+        SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
         mCurrentPage = savedState.currentPage;
         mSnapPage = savedState.currentPage;
@@ -529,6 +527,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
             }
+
             @Override
             public SavedState[] newArray(int size) {
                 return new SavedState[size];

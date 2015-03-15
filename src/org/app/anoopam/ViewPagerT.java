@@ -7,30 +7,26 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.ImageView;
 
 @SuppressLint("ValidFragment")
 public final class ViewPagerT extends Fragment {
     private static final String KEY_CONTENT = "TestFragment:Content";
-
     int imageSource;
     Bitmap myBitmap;
-    
+
     public ViewPagerT(int imageSource) {
         this.imageSource = imageSource;
-        
     }
+
     public ViewPagerT(Bitmap imageSource) {
         this.myBitmap = imageSource;
-        
     }
+
     public ViewPagerT() {
-        
     }
 
     @Override
@@ -50,9 +46,9 @@ public final class ViewPagerT extends Fragment {
         image.setImageResource(imageSource);
         image.setImageBitmap(myBitmap);
         */
-        
-        WebView webview = (WebView)root.findViewById(R.id.slider_image);
-        String html="<html><body bgcolor='#b6d8f0'><center><img src='{IMAGE_URL}' /></center></body></html>";
+
+        WebView webview = (WebView) root.findViewById(R.id.slider_image);
+        String html = "<html><body bgcolor='#b6d8f0'><center><img src='{IMAGE_URL}' /></center></body></html>";
         Bitmap bitmap = myBitmap;
         webview.getSettings().setLoadWithOverviewMode(true);
         webview.getSettings().setUseWideViewPort(true);
@@ -70,7 +66,7 @@ public final class ViewPagerT extends Fragment {
         setRetainInstance(true);
         return root;
     }
-   
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
