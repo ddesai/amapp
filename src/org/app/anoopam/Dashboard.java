@@ -1,9 +1,16 @@
 package org.app.anoopam;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -11,6 +18,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.os.Vibrator;
 import android.view.View;
+import android.widget.Toast;
 
 public class Dashboard extends Activity{ 
 	
@@ -32,13 +40,6 @@ public class Dashboard extends Activity{
 	{
 		Vibrator vs = (Vibrator) this.getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
 		vs.vibrate(100);
-		try {
-		    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-		    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-		    r.play();
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
 		
 		Intent i=new Intent(getBaseContext(),Today.class);
         startActivity(i);
@@ -47,13 +48,7 @@ public class Dashboard extends Activity{
 	{
 		Vibrator vs = (Vibrator) this.getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
 		vs.vibrate(100);
-		try {
-		    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-		    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-		    r.play();
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
+		
 		
 		Intent i=new Intent(getBaseContext(),Quote.class);
         startActivity(i);
@@ -63,13 +58,7 @@ public class Dashboard extends Activity{
 		try{
 			Vibrator vs = (Vibrator) this.getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
 			vs.vibrate(100);
-			try {
-			    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-			    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-			    r.play();
-			} catch (Exception e) {
-			    e.printStackTrace();
-			}
+			
 			
 			Intent LaunchIntent = getPackageManager().getLaunchIntentForPackage("com.web.anoopam");
 			startActivity( LaunchIntent );
@@ -82,17 +71,19 @@ public class Dashboard extends Activity{
 			}
 		}
 	}
+	public void GoNotification(View v){
+		Vibrator vs = (Vibrator) this.getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
+		vs.vibrate(100);
+		
+		
+		Intent i=new Intent(getBaseContext(),Notification.class);
+        startActivity(i);
+	}
 	public void GoCalendar(View v)
 	{
 		Vibrator vs = (Vibrator) this.getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
 		vs.vibrate(100);
-		try {
-		    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-		    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-		    r.play();
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
+		
 		
 		Intent i=new Intent(getBaseContext(),Calendars.class);
         startActivity(i);

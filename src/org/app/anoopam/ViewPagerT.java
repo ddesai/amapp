@@ -7,10 +7,12 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.ImageView;
 
 @SuppressLint("ValidFragment")
 public final class ViewPagerT extends Fragment {
@@ -50,7 +52,7 @@ public final class ViewPagerT extends Fragment {
         */
         
         WebView webview = (WebView)root.findViewById(R.id.slider_image);
-        String html="<html><body><center><img src='{IMAGE_URL}' /></center></body></html>";
+        String html="<html><body bgcolor='#b6d8f0'><center><img src='{IMAGE_URL}' /></center></body></html>";
         Bitmap bitmap = myBitmap;
         webview.getSettings().setLoadWithOverviewMode(true);
         webview.getSettings().setUseWideViewPort(true);

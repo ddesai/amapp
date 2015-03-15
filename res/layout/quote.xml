@@ -3,7 +3,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_margin="10dp"
-        android:gravity="center" >
+        android:gravity="center"
+        android:background="@color/background" >
 
         <ImageView
             android:id="@+id/quote"
@@ -11,7 +12,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:contentDescription="Today Image"
-            android:layout_margin="10dp"
+          
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:src="@drawable/murti" />

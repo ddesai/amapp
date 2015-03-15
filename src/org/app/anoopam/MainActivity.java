@@ -26,11 +26,11 @@ public class MainActivity extends Activity {
 		                  
 		                    sleep(2000);
 		                  
-			                    Intent i = new Intent (getBaseContext(), Dashboard.class);
+			                    Intent i=new Intent(getBaseContext(),Dashboard.class);
 			                    startActivity(i);
 		                   
 		                    
-		                    //finish();
+		                    finish();
 		                     
 		                } catch (Exception e) {
 		                 
