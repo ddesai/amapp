@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
                     Intent i = new Intent(getBaseContext(), Dashboard.class);
                     startActivity(i);
                     finish();
+                    //test 
                 } catch (Exception e) {
                 }
             }
