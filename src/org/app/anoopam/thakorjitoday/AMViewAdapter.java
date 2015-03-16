@@ -1,11 +1,14 @@
-package org.app.anoopam;
+package org.app.anoopam.thakorjitoday;
 
 import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-class TestFragmentAdapter extends FragmentPagerAdapter {
+import org.app.anoopam.R;
+import org.app.anoopam.ViewPagerT;
+
+public class AMViewAdapter extends FragmentPagerAdapter {
 
     private int[] offerImages = { R.drawable.settings, R.drawable.settings, R.drawable.settings, R.drawable.settings, R.drawable.settings };
 
@@ -21,7 +24,7 @@ class TestFragmentAdapter extends FragmentPagerAdapter {
 
     private int mCount = offerImages.length;
 
-    public TestFragmentAdapter(FragmentManager fm) {
+    public AMViewAdapter(FragmentManager fm) {
         super(fm);
     }
 

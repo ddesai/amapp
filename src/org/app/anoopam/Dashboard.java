@@ -9,6 +9,8 @@ import android.os.StrictMode;
 import android.os.Vibrator;
 import android.view.View;
 
+import org.app.anoopam.thakorjitoday.Today;
+
 public class Dashboard extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

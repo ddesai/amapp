@@ -1,4 +1,4 @@
-package org.app.anoopam;
+package org.app.anoopam.thakorjitoday;
 
 import android.app.Dialog;
 import android.app.TabActivity;
@@ -18,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
+
+import org.app.anoopam.Dashboard;
+import org.app.anoopam.R;
 
 public class Today extends TabActivity {
     private TabHost mTabHost;

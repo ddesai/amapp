@@ -1,6 +1,4 @@
-package org.app.anoopam;
-
-import java.util.Random;
+package org.app.anoopam.gcm;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
@@ -17,16 +15,17 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 
-import static org.app.anoopam.CommonUtilities.SENDER_ID;
-import static org.app.anoopam.CommonUtilities.displayMessage;
+import org.app.anoopam.QuickNews;
+import org.app.anoopam.R;
+
+import java.util.Random;
 
 public class GCMIntentService extends GCMBaseIntentService {
-
     private static final String TAG = "GCMIntentService";
-    public static final String PREFS_NAME = "DhruServer";
+    public static final String PREFS_NAME = "AMAPP"; //FIXME - later use a common sharedPrefs for the app
 
     public GCMIntentService() {
-        super(SENDER_ID);
+        super(GcmUtils.SENDER_ID);
     }
 
     /**
@@ -35,7 +34,7 @@ public class GCMIntentService extends GCMBaseIntentService {
     @Override
     protected void onRegistered(Context context, String registrationId) {
         Log.i(TAG, "Device registered: regId = " + registrationId);
-        displayMessage(context, "Your device registred with GCM");
+        GcmUtils.displayMessage(context, "Your device registred with GCM");
     }
 
     /**
@@ -56,7 +55,7 @@ public class GCMIntentService extends GCMBaseIntentService {
         String message = intent.getExtras().getString("msg");
         String id = intent.getExtras().getString("id");
         String title = intent.getExtras().getString("title");
-        displayMessage(context, message);
+        GcmUtils.displayMessage(context, message);
         generateNotification(context, message, id, title);
     }
 

@@ -1,5 +1,8 @@
-package org.app.anoopam;
+package org.app.anoopam.thakorjitoday;
 
+import org.app.anoopam.CirclePageIndicator;
+import org.app.anoopam.PageIndicator;
+import org.app.anoopam.R;
 import org.app.anoopam.util.GeneralUtils;
 import org.app.anoopam.util.TodayUpdateHelper;
 
@@ -16,7 +19,7 @@ import android.support.v4.view.ViewPager;
 public class Uk extends FragmentActivity {
 
     AsyncTask<Void, Void, Void> mRegisterTask;
-    TestFragmentAdapter mAdapter;
+    AMViewAdapter mAdapter;
     ViewPager mPager;
     PageIndicator mIndicator;
     Context mContext; 
@@ -66,7 +69,7 @@ public class Uk extends FragmentActivity {
             @Override
             protected void onPostExecute(Void result) {
                 mRegisterTask = null;
-                mAdapter = new TestFragmentAdapter(getSupportFragmentManager());
+                mAdapter = new AMViewAdapter(getSupportFragmentManager());
                 mAdapter.setCount(4);
                 mAdapter.setImagesB(offerImagesB);
                 mPager = (ViewPager) findViewById(R.id.pager);

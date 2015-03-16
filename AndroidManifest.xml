@@ -40,7 +40,7 @@
                 <category android:name="org.app.anoopam" />
             </intent-filter>
         </receiver>
-        <service android:name=".GCMIntentService" />
+        <service android:name="org.app.anoopam.gcm.GCMIntentService" />
         
         
         <activity
@@ -58,7 +58,7 @@
         </activity>  
               
         <activity
-            android:name=".Today"
+            android:name="org.app.anoopam.thakorjitoday.Today"
             android:label="Thakorji Darshan" >
         </activity> 
          
@@ -68,22 +68,22 @@
         </activity> 
         
         <activity
-            android:name=".Uk"
+            android:name="org.app.anoopam.thakorjitoday.Uk"
             android:label="@string/app_name" >
         </activity> 
                
         <activity
-            android:name=".Usa"
+            android:name="org.app.anoopam.thakorjitoday.Usa"
             android:label="@string/app_name" >
         </activity>    
         <activity
-            android:name=".Mogri"
+            android:name="org.app.anoopam.thakorjitoday.Mogri"
             android:label="@string/app_name" >
         </activity>    
         
                
         <activity
-            android:name=".Kharghar"
+            android:name="org.app.anoopam.thakorjitoday.Kharghar"
             android:label="@string/app_name" >
         </activity>
          
@@ -102,7 +102,7 @@
             android:label="Today's Quote" >
         </activity>    
         <activity
-            android:name=".Surat"
+            android:name="org.app.anoopam.thakorjitoday.Surat"
             android:label="@string/app_name" >
         </activity> 
         <activity

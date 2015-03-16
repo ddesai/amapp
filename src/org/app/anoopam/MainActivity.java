@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 			final String regId = GCMRegistrar.getRegistrationId(this);
 		       
 	        if (regId.equals("")) {
-	            GCMRegistrar.register(this, org.app.anoopam.CommonUtilities.SENDER_ID);
+	            GCMRegistrar.register(this, org.app.anoopam.gcm.GcmUtils.SENDER_ID);
 	        } else {
 	        	
 	        	 final Context context = this;

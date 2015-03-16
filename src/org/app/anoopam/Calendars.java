@@ -1,5 +1,38 @@
 package org.app.anoopam;
 
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
+import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.app.anoopam.thakorjitoday.AMViewAdapter;
+import org.app.anoopam.util.Comm;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,40 +45,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Bitmap.Config;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.os.StrictMode;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
-import android.util.Base64;
-import android.view.Menu;
-import android.view.MenuItem;
-
 public class Calendars extends FragmentActivity {
     public static final String PREFS_NAME = "AM";
-    TestFragmentAdapter mAdapter;
+    AMViewAdapter mAdapter;
     ViewPager mPager;
     PageIndicator mIndicator;
     AsyncTask<Void, Void, Void> mRegisterTask;
@@ -128,7 +130,7 @@ public class Calendars extends FragmentActivity {
             };
             mRegisterTask.execute(null, null, null);
         }
-        mAdapter = new TestFragmentAdapter(getSupportFragmentManager());
+        mAdapter = new AMViewAdapter(getSupportFragmentManager());
         mAdapter.setCount(12);
         mAdapter.setImagesB(offerImagesB);
         mPager = (ViewPager) findViewById(R.id.pager);

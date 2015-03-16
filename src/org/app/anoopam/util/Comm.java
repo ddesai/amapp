@@ -1,4 +1,4 @@
-package org.app.anoopam;
+package org.app.anoopam.util;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

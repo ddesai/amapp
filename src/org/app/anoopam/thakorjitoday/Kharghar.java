@@ -1,5 +1,8 @@
-package org.app.anoopam;
+package org.app.anoopam.thakorjitoday;
 
+import org.app.anoopam.CirclePageIndicator;
+import org.app.anoopam.PageIndicator;
+import org.app.anoopam.R;
 import org.app.anoopam.util.GeneralUtils;
 import org.app.anoopam.util.TodayUpdateHelper;
 
@@ -13,10 +16,10 @@ import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
-public class Surat extends FragmentActivity {
-
+public class Kharghar extends FragmentActivity {
     AsyncTask<Void, Void, Void> mRegisterTask;
-    TestFragmentAdapter mAdapter;
+    AsyncTask<Void, Void, Void> mRegisterTask2;
+    AMViewAdapter mAdapter;
     ViewPager mPager;
     PageIndicator mIndicator;
     Context mContext; 
@@ -26,6 +29,7 @@ public class Surat extends FragmentActivity {
         super.onCreate(savedInstanceState);
         mContext = getApplicationContext();
         mSettings = GeneralUtils.getAMSharedPrefs(mContext);
+        setContentView(R.layout.uk);
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -39,25 +43,25 @@ public class Surat extends FragmentActivity {
 
             @Override
             protected void onPreExecute() {
-                progressDialog = ProgressDialog.show(Surat.this, "", "Loading please wait...");
+                progressDialog = ProgressDialog.show(Kharghar.this, "", "Loading please wait...");
                 progressDialog.show();
                 super.onPreExecute();
             }
 
             @Override
             protected Void doInBackground(Void... params) {
-                TodayUpdateHelper.updateTodayDateStatusFromServer(mContext, "surat1", "SURATDate");
+                TodayUpdateHelper.updateTodayDateStatusFromServer(mContext, "kharghar1", "KHARDate");
 
-                if (mSettings.getString("SURAT1", "").equals("")) {
-                    offerImagesB[0] = TodayUpdateHelper.getImageFromServer(mContext, "surat1", "SURAT1.jpg", "SURATDate", true);
-                    offerImagesB[1] = TodayUpdateHelper.getImageFromServer(mContext, "surat3", "SURAT2.jpg");
-                    offerImagesB[2] = TodayUpdateHelper.getImageFromServer(mContext, "surat5", "SURAT3.jpg");
-                    offerImagesB[3] = TodayUpdateHelper.getImageFromServer(mContext, "surat7", "SURAT4.jpg");
+                if (mSettings.getString("KHAR1", "").equals("")) {
+                    offerImagesB[0] = TodayUpdateHelper.getImageFromServer(mContext, "kharghar1", "KHAR1.jpg", "KHARDate", true);
+                    offerImagesB[1] = TodayUpdateHelper.getImageFromServer(mContext, "kharghar3", "KHAR2.jpg");
+                    offerImagesB[2] = TodayUpdateHelper.getImageFromServer(mContext, "kharghar5", "KHAR3.jpg");
+                    offerImagesB[3] = TodayUpdateHelper.getImageFromServer(mContext, "kharghar7", "KHAR4.jpg");
                 } else {
-                    offerImagesB[0] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("SURAT1", ""), "SURAT1.jpg"));
-                    offerImagesB[1] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("SURAT2", ""), "SURAT2.jpg"));
-                    offerImagesB[2] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("SURAT3", ""), "SURAT3.jpg"));
-                    offerImagesB[3] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("SURAT4", ""), "SURAT4.jpg"));
+                    offerImagesB[0] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("KHAR1", ""), "KHAR1.jpg"));
+                    offerImagesB[1] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("KHAR2", ""), "KHAR2.jpg"));
+                    offerImagesB[2] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("KHAR3", ""), "KHAR3.jpg"));
+                    offerImagesB[3] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("KHAR4", ""), "KHAR4.jpg"));
                 }
                 return null;
             }
@@ -65,8 +69,7 @@ public class Surat extends FragmentActivity {
             @Override
             protected void onPostExecute(Void result) {
                 mRegisterTask = null;
-
-                mAdapter = new TestFragmentAdapter(getSupportFragmentManager());
+                mAdapter = new AMViewAdapter(getSupportFragmentManager());
                 mAdapter.setCount(4);
                 mAdapter.setImagesB(offerImagesB);
                 mPager = (ViewPager) findViewById(R.id.pager);
@@ -75,13 +78,14 @@ public class Surat extends FragmentActivity {
                 CirclePageIndicator indicator = (CirclePageIndicator) findViewById(R.id.indicator);
                 mIndicator = indicator;
                 indicator.setViewPager(mPager);
+
                 final float density = getResources().getDisplayMetrics().density;
-                //indicator.setBackgroundColor(0xFFCCCCCC);
                 indicator.setRadius(6 * density);
                 indicator.setPageColor(0xFFFFFFFF);
                 indicator.setFillColor(0x88a7a7a7);
                 indicator.setStrokeColor(0xFF878585);
                 indicator.setStrokeWidth(1 * density);
+
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }
