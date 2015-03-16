@@ -14,7 +14,6 @@ import org.app.anoopam.CirclePageIndicator;
 import org.app.anoopam.PageIndicator;
 import org.app.anoopam.R;
 import org.app.anoopam.util.GeneralUtils;
-import org.app.anoopam.util.ServerImageLoaderAsyncTask;
 import org.app.anoopam.util.TodayUpdateHelper;
 
 public class Usa extends FragmentActivity {
@@ -53,9 +52,6 @@ public class Usa extends FragmentActivity {
             protected Void doInBackground(Void... params) {
                 TodayUpdateHelper.updateTodayDateStatusFromServer(mContext, "usa1", "USADate");
                 if (mSettings.getString("USA1", "").equals("")) {
-                    ServerImageLoaderAsyncTask imageLoaderTask = new ServerImageLoaderAsyncTask();
-                    imageLoaderTask.init(mContext, "usa1", "USA1.jpg", "USADate", true);
-                    imageLoaderTask.execute();
                     offerImagesB[0] = TodayUpdateHelper.getImageFromServer(mContext, "usa1", "USA1.jpg", "USADate", true);
                     offerImagesB[1] = TodayUpdateHelper.getImageFromServer(mContext, "usa3", "USA2.jpg");
                     offerImagesB[2] = TodayUpdateHelper.getImageFromServer(mContext, "usa5", "USA3.jpg");
