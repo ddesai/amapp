@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Bitmap.Config;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Base64;
@@ -42,37 +42,18 @@ import java.util.List;
  */
 public class TodayUpdateHelper {
 
-    /*
-    public static void todayDateRefresh() {
-        HttpClient httpclient2 = new DefaultHttpClient();
-        HttpPost httppost2 = new HttpPost("http://anoopam.org/eCommunity/thakorji.php?action=usa1");
-        try {
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-            nameValuePairs.add(new BasicNameValuePair("status", "true"));
-            httppost2.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-            HttpResponse response = httpclient2.execute(httppost2);
-            HttpEntity entity = response.getEntity();
-            InputStream is = entity.getContent();
-            String data = convertStreamToString(is);
-            JSONObject json_data = null;
-            try {
-                json_data = new JSONObject(data);
-                if (!settings.getString("USADate", "").equals(json_data.getString("STATUS"))) {
-                    editor.putString("USA1", "");
-                    editor.putString("USA2", "");
-                    editor.putString("USA3", "");
-                    editor.putString("USA4", "");
-                    editor.commit();
-                }
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        } catch (ClientProtocolException e) {
-        } catch (IOException e) {
-        }
+    /**
+     * creates 4 bitmaps for ThakorjiToday
+     *
+     * @param bitmaps
+     * @param drawable
+     */
+    public static void getThakorjiTodayBitmaps(Bitmap[] bitmaps, Drawable drawable) {
+        bitmaps[0] = drawableToBitmap(drawable);
+        bitmaps[1] = drawableToBitmap(drawable);
+        bitmaps[2] = drawableToBitmap(drawable);
+        bitmaps[3] = drawableToBitmap(drawable);
     }
-    */
     
     /**
      * Converts Stream to String

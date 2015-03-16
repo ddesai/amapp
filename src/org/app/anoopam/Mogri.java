@@ -32,11 +32,8 @@ public class Mogri extends FragmentActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        final Bitmap[] offerImagesB = { 
-                TodayUpdateHelper.drawableToBitmap(getResources().getDrawable(R.drawable.settings)), 
-                TodayUpdateHelper.drawableToBitmap(getResources().getDrawable(R.drawable.settings)), 
-                TodayUpdateHelper.drawableToBitmap(getResources().getDrawable(R.drawable.settings)), 
-                TodayUpdateHelper.drawableToBitmap(getResources().getDrawable(R.drawable.settings)) };
+        final Bitmap[] offerImagesB = new Bitmap[4];
+        TodayUpdateHelper.getThakorjiTodayBitmaps(offerImagesB, getResources().getDrawable(R.drawable.settings));
 
         mRegisterTask = new AsyncTask<Void, Void, Void>() {
             ProgressDialog progressDialog;
