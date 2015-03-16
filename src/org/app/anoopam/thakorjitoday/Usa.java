@@ -52,7 +52,6 @@ public class Usa extends FragmentActivity {
             protected Void doInBackground(Void... params) {
                 TodayUpdateHelper.updateTodayDateStatusFromServer(mContext, "usa1", "USADate");
                 if (mSettings.getString("USA1", "").equals("")) {
-                  
                     offerImagesB[0] = TodayUpdateHelper.getImageFromServer(mContext, "usa1", "USA1.jpg", "USADate", true);
                     offerImagesB[1] = TodayUpdateHelper.getImageFromServer(mContext, "usa3", "USA2.jpg");
                     offerImagesB[2] = TodayUpdateHelper.getImageFromServer(mContext, "usa5", "USA3.jpg");
@@ -64,8 +63,6 @@ public class Usa extends FragmentActivity {
                     offerImagesB[3] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("USA4", ""), "USA4.jpg"));
                 }
                 return null;
-                
-              
             }
 
             @Override
