@@ -1,4 +1,4 @@
-package org.app.anoopam.gcm;
+package org.app.anoopam;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
@@ -15,8 +15,8 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 
-import org.app.anoopam.QuickNews;
 import org.app.anoopam.R;
+import org.app.anoopam.gcm.GcmUtils;
 
 import java.util.Random;
 
@@ -42,7 +42,7 @@ public class GCMIntentService extends GCMBaseIntentService {
      * */
     @Override
     protected void onUnregistered(Context context, String registrationId) {
-        // Log.i(TAG, "Device unregistered");
+        Log.i(TAG, "Device unregistered");
         // displayMessage(context, getString(R.string.gcm_unregistered));
         //  ServerUtilities.unregister(context, registrationId);
     }

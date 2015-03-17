@@ -3,6 +3,7 @@ package org.app.anoopam.gcm;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.google.android.gcm.GCMRegistrar;
 
@@ -27,6 +28,7 @@ public final class GcmUtils {
      * @param message message to be displayed.
      */
     public static void displayMessage(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(DISPLAY_MESSAGE_ACTION);
         intent.putExtra(EXTRA_MESSAGE, message);
         context.sendBroadcast(intent);

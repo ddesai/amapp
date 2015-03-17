@@ -40,7 +40,7 @@
                 <category android:name="org.app.anoopam" />
             </intent-filter>
         </receiver>
-        <service android:name="org.app.anoopam.gcm.GCMIntentService" />
+        <service android:name="org.app.anoopam.GCMIntentService" />
         
         
         <activity
