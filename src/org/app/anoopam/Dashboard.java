@@ -9,6 +9,7 @@ import android.os.StrictMode;
 import android.os.Vibrator;
 import android.view.View;
 
+import org.app.anoopam.gcm.GCMRegistration;
 import org.app.anoopam.thakorjitoday.Today;
 
 public class Dashboard extends Activity {
@@ -21,6 +22,8 @@ public class Dashboard extends Activity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+        ///////////REGISTER DEVICE///////////
+        GCMRegistration.sendDeviceID(this);
     }
 
     public void GoToday(View v) {

@@ -9,6 +9,7 @@ import android.view.WindowManager;
 import org.app.anoopam.gcm.GcmUtils;
 
 public class MainActivity extends Activity {
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +17,7 @@ public class MainActivity extends Activity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
-	    
+
         // starts GCM Registration, if not already done
         GcmUtils.startGcmRegistration(this);
         
