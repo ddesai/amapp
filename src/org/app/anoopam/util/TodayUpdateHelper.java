@@ -41,7 +41,7 @@ import java.util.List;
  * @author ddesai
  */
 public class TodayUpdateHelper {
-
+	
     /**
      * creates 4 bitmaps for ThakorjiToday
      *
@@ -54,6 +54,14 @@ public class TodayUpdateHelper {
         bitmaps[2] = drawableToBitmap(drawable);
         bitmaps[3] = drawableToBitmap(drawable);
     }
+    
+    
+    /**
+     * Store something on Local Storage
+     * 
+     * 
+     */
+    
     
     /**
      * Converts Stream to String

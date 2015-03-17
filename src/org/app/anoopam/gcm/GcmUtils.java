@@ -8,7 +8,7 @@ import com.google.android.gcm.GCMRegistrar;
 
 public final class GcmUtils {
     // Google project id
-    public static final String SENDER_ID = "122992289109";
+    public static final String SENDER_ID = "574631367690";
     static AsyncTask<Void, Void, Void> mRegisterTask;
 
     /**
