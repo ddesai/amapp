@@ -43,10 +43,13 @@ public final class GcmUtils {
         GCMRegistrar.checkDevice(ctx);
         GCMRegistrar.checkManifest(ctx);
         final String regId = GCMRegistrar.getRegistrationId(ctx);
-
+       
         if (regId.equals("")) {
+        	
             GCMRegistrar.register(ctx, GcmUtils.SENDER_ID);
+           
         } else {
+        	
             final Context context = ctx;
             mRegisterTask = new AsyncTask<Void, Void, Void>() {
 

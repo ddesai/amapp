@@ -48,9 +48,7 @@ public final class GCMRegistration {
                 protected Void doInBackground(Void... params) {
                     HttpClient httpclient = new DefaultHttpClient();
                     HttpPost httppost = new HttpPost("http://anoopam.org/eCommunity/gcm.php?action=registration");
-
                     String android_id = Secure.getString(mContext.getContentResolver(), Secure.ANDROID_ID);
-
                     List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
                     nameValuePairs.add(new BasicNameValuePair("m", android_id));
                     nameValuePairs.add(new BasicNameValuePair("gcm", mRegId));
