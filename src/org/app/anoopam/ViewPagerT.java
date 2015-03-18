@@ -48,7 +48,7 @@ public final class ViewPagerT extends Fragment {
         */
 
         WebView webview = (WebView) root.findViewById(R.id.slider_image);
-        String html = "<html><body bgcolor='#b6d8f0'><center><img src='{IMAGE_URL}' /></center></body></html>";
+        String html = "<html><meta name='viewport' content='width=device-width, initial-scale=1.0'><body bgcolor='#b6d8f0'><center><img src='{IMAGE_URL}' /></center></body></html>";
         Bitmap bitmap = myBitmap;
         webview.getSettings().setLoadWithOverviewMode(true);
         webview.getSettings().setUseWideViewPort(true);
