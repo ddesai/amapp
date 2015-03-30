@@ -8,11 +8,12 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.os.Vibrator;
 import android.view.View;
-
 import org.app.anoopam.gcm.GCMRegistration;
 import org.app.anoopam.thakorjitoday.Today;
 
+
 public class Dashboard extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,9 +23,11 @@ public class Dashboard extends Activity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
         ///////////REGISTER DEVICE///////////
         GCMRegistration.sendDeviceID(this);
     }
+
 
     public void GoToday(View v) {
         Vibrator vs = (Vibrator) this.getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);

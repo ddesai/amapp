@@ -51,9 +51,10 @@ public final class GcmUtils {
 
     public static void verifyGcmRegistration(Activity activity) {
         GoogleCloudMessaging gcm;
-        String regId;
+        String regId = null;
         // Checks the device for Play Services
         // If successful, then proceed with the registration.
+
         if (checkPlayServices(activity)) {
             gcm = GoogleCloudMessaging.getInstance(activity);
             regId = getRegistrationId(activity.getBaseContext());
@@ -64,6 +65,7 @@ public final class GcmUtils {
         } else {
             Log.i(LOG_TAG, "No valid Google Play Services APK found.");
         }
+        Toast.makeText(activity, regId, Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -78,7 +80,7 @@ public final class GcmUtils {
         final SharedPreferences prefs = GeneralUtils.getAMSharedPrefs(context);
         String regId = prefs.getString(KEY_REG_ID, "");
         Log.d(LOG_TAG, "RegistrationID: "+regId);
-        Toast.makeText(context, regId, Toast.LENGTH_LONG).show();
+
         if (regId.isEmpty()) {
             Log.i(LOG_TAG, "Registration not found.");
             return "";
@@ -117,12 +119,14 @@ public final class GcmUtils {
      * the Google Play Store or enable it in the device's system settings.
      */
     private static boolean checkPlayServices(Activity activity) {
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(activity);
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(activity.getApplicationContext());
+
         if (resultCode != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
                 GooglePlayServicesUtil.getErrorDialog(resultCode, activity,
                         PLAY_SERVICES_RESOLUTION_REQUEST).show();
             } else {
+
                 Log.i(LOG_TAG, "This device is not supported.");
                 activity.finish();
             }

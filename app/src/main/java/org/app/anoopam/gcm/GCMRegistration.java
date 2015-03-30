@@ -4,15 +4,18 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.provider.Settings.Secure;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 import org.app.anoopam.util.TodayUpdateHelper;
 
 import java.io.IOException;
@@ -30,15 +33,18 @@ public final class GCMRegistration {
     public static void sendDeviceID(Context ctx) {
         mContext = ctx;
         mRegId = GcmUtils.getRegistrationId(ctx);
-        
+
+
         Log.i(LOG_TAG, "GcmRegId: " + mRegId);
         
         if (mRegId != null && !mRegId.isEmpty()) { // && settings.getBoolean("GCM", true)) {
+
+
             GcmUtils.displayMessage(ctx, mRegId);
             mRegisterTask = new AsyncTask<Void, Void, Void>() {
-                
                 @Override
                 protected Void doInBackground(Void... params) {
+
                     HttpClient httpclient = new DefaultHttpClient();
                     HttpPost httppost = new HttpPost("http://anoopam.org/eCommunity/gcm.php?action=registration");
 
@@ -48,6 +54,8 @@ public final class GCMRegistration {
                     nameValuePairs.add(new BasicNameValuePair("m", android_id));
                     nameValuePairs.add(new BasicNameValuePair("gcm", mRegId));
                     try {
+                        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, HTTP.UTF_8));
+
                         HttpResponse response = httpclient.execute(httppost);
                         HttpEntity entity = response.getEntity();
                         InputStream is = entity.getContent();
@@ -57,9 +65,11 @@ public final class GCMRegistration {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
+
+
                     return null;
                 }
-
                 @Override
                 protected void onPostExecute(Void result) {
                     mRegisterTask = null;
@@ -68,6 +78,8 @@ public final class GCMRegistration {
                 }
             };
             mRegisterTask.execute(null, null, null);
+
+
         }
     }
 }
