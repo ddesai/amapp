@@ -1,10 +1,4 @@
-package org.app.anoopam.thakorjitoday;
-
-import org.app.anoopam.CirclePageIndicator;
-import org.app.anoopam.PageIndicator;
-import org.app.anoopam.R;
-import org.app.anoopam.util.GeneralUtils;
-import org.app.anoopam.util.TodayUpdateHelper;
+package org.app.anoopam.thakorjitoday.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,7 +10,15 @@ import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
-public class Uk extends FragmentActivity {
+import org.app.anoopam.CirclePageIndicator;
+import org.app.anoopam.PageIndicator;
+import org.app.anoopam.R;
+import org.app.anoopam.thakorjitoday.AMViewAdapter;
+import org.app.anoopam.thakorjitoday.TodayDateSyncer;
+import org.app.anoopam.util.GeneralUtils;
+import org.app.anoopam.util.TodayUpdateHelper;
+
+public class UsaThakorjiActivity extends FragmentActivity {
 
     AsyncTask<Void, Void, Void> mRegisterTask;
     AMViewAdapter mAdapter;
@@ -43,7 +45,7 @@ public class Uk extends FragmentActivity {
 
             @Override
             protected void onPreExecute() {
-                progressDialog = ProgressDialog.show(Uk.this, "", "Loading please wait...");
+                progressDialog = ProgressDialog.show(UsaThakorjiActivity.this, "", "Loading please wait...");
                 progressDialog.show();
                 super.onPreExecute();
             }
@@ -51,15 +53,15 @@ public class Uk extends FragmentActivity {
             @Override
             protected Void doInBackground(Void... params) {
                 if (TodayDateSyncer.isDateCurrent(mContext)) {
-                    offerImagesB[0] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("UK1", ""), "UK1.jpg"));
-                    offerImagesB[1] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("UK2", ""), "UK2.jpg"));
-                    offerImagesB[2] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("UK3", ""), "UK3.jpg"));
-                    offerImagesB[3] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("UK4", ""), "UK4.jpg"));
+                    offerImagesB[0] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("USA1", ""), "USA1.jpg"));
+                    offerImagesB[1] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("USA2", ""), "USA2.jpg"));
+                    offerImagesB[2] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("USA3", ""), "USA3.jpg"));
+                    offerImagesB[3] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("USA4", ""), "USA4.jpg"));
                 } else {
-                    offerImagesB[0] = TodayUpdateHelper.getImageFromServer(mContext, "uk1", "UK1.jpg");
-                    offerImagesB[1] = TodayUpdateHelper.getImageFromServer(mContext, "uk3", "UK2.jpg");
-                    offerImagesB[2] = TodayUpdateHelper.getImageFromServer(mContext, "uk5", "UK3.jpg");
-                    offerImagesB[3] = TodayUpdateHelper.getImageFromServer(mContext, "uk7", "UK4.jpg");
+                    offerImagesB[0] = TodayUpdateHelper.getImageFromServer(mContext, "usa1", "USA1.jpg");
+                    offerImagesB[1] = TodayUpdateHelper.getImageFromServer(mContext, "usa3", "USA2.jpg");
+                    offerImagesB[2] = TodayUpdateHelper.getImageFromServer(mContext, "usa5", "USA3.jpg");
+                    offerImagesB[3] = TodayUpdateHelper.getImageFromServer(mContext, "usa7", "USA4.jpg");
                 }
                 return null;
             }
@@ -67,6 +69,7 @@ public class Uk extends FragmentActivity {
             @Override
             protected void onPostExecute(Void result) {
                 mRegisterTask = null;
+
                 mAdapter = new AMViewAdapter(getSupportFragmentManager());
                 mAdapter.setCount(4);
                 mAdapter.setImagesB(offerImagesB);
@@ -78,6 +81,7 @@ public class Uk extends FragmentActivity {
                 indicator.setViewPager(mPager);
 
                 final float density = getResources().getDisplayMetrics().density;
+                //indicator.setBackgroundColor(0xFFCCCCCC);
                 indicator.setRadius(6 * density);
                 indicator.setPageColor(0xFFFFFFFF);
                 indicator.setFillColor(0x88a7a7a7);

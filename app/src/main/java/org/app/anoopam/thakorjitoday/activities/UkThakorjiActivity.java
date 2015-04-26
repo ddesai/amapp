@@ -1,10 +1,4 @@
-package org.app.anoopam.thakorjitoday;
-
-import org.app.anoopam.CirclePageIndicator;
-import org.app.anoopam.PageIndicator;
-import org.app.anoopam.R;
-import org.app.anoopam.util.GeneralUtils;
-import org.app.anoopam.util.TodayUpdateHelper;
+package org.app.anoopam.thakorjitoday.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,9 +10,17 @@ import android.os.StrictMode;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
-public class Mogri extends FragmentActivity {
+import org.app.anoopam.CirclePageIndicator;
+import org.app.anoopam.PageIndicator;
+import org.app.anoopam.R;
+import org.app.anoopam.thakorjitoday.AMViewAdapter;
+import org.app.anoopam.thakorjitoday.TodayDateSyncer;
+import org.app.anoopam.util.GeneralUtils;
+import org.app.anoopam.util.TodayUpdateHelper;
+
+public class UkThakorjiActivity extends FragmentActivity {
+
     AsyncTask<Void, Void, Void> mRegisterTask;
-    AsyncTask<Void, Void, Void> mRegisterTask2;
     AMViewAdapter mAdapter;
     ViewPager mPager;
     PageIndicator mIndicator;
@@ -43,7 +45,7 @@ public class Mogri extends FragmentActivity {
 
             @Override
             protected void onPreExecute() {
-                progressDialog = ProgressDialog.show(Mogri.this, "", "Loading please wait...");
+                progressDialog = ProgressDialog.show(UkThakorjiActivity.this, "", "Loading please wait...");
                 progressDialog.show();
                 super.onPreExecute();
             }
@@ -51,15 +53,15 @@ public class Mogri extends FragmentActivity {
             @Override
             protected Void doInBackground(Void... params) {
                 if (TodayDateSyncer.isDateCurrent(mContext)) {
-                    offerImagesB[0] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("MOGRI1", ""), "MOGRI1.jpg"));
-                    offerImagesB[1] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("MOGRI2", ""), "MOGRI2.jpg"));
-                    offerImagesB[2] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("MOGRI3", ""), "MOGRI3.jpg"));
-                    offerImagesB[3] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("MOGRI4", ""), "MOGRI4.jpg"));
+                    offerImagesB[0] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("UK1", ""), "UK1.jpg"));
+                    offerImagesB[1] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("UK2", ""), "UK2.jpg"));
+                    offerImagesB[2] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("UK3", ""), "UK3.jpg"));
+                    offerImagesB[3] = (TodayUpdateHelper.loadImageFromStorage(mSettings.getString("UK4", ""), "UK4.jpg"));
                 } else {
-                    offerImagesB[0] = TodayUpdateHelper.getImageFromServer(mContext, "mogri1", "MOGRI1.jpg");
-                    offerImagesB[1] = TodayUpdateHelper.getImageFromServer(mContext, "mogri3", "MOGRI2.jpg");
-                    offerImagesB[2] = TodayUpdateHelper.getImageFromServer(mContext, "mogri5", "MOGRI3.jpg");
-                    offerImagesB[3] = TodayUpdateHelper.getImageFromServer(mContext, "mogri7", "MOGRI4.jpg");
+                    offerImagesB[0] = TodayUpdateHelper.getImageFromServer(mContext, "uk1", "UK1.jpg");
+                    offerImagesB[1] = TodayUpdateHelper.getImageFromServer(mContext, "uk3", "UK2.jpg");
+                    offerImagesB[2] = TodayUpdateHelper.getImageFromServer(mContext, "uk5", "UK3.jpg");
+                    offerImagesB[3] = TodayUpdateHelper.getImageFromServer(mContext, "uk7", "UK4.jpg");
                 }
                 return null;
             }
@@ -83,7 +85,6 @@ public class Mogri extends FragmentActivity {
                 indicator.setFillColor(0x88a7a7a7);
                 indicator.setStrokeColor(0xFF878585);
                 indicator.setStrokeWidth(1 * density);
-
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }

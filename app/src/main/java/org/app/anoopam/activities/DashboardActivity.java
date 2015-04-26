@@ -1,4 +1,4 @@
-package org.app.anoopam;
+package org.app.anoopam.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.os.Vibrator;
 import android.view.View;
+
+import org.app.anoopam.Notification;
+import org.app.anoopam.R;
 import org.app.anoopam.gcm.GCMRegistration;
-import org.app.anoopam.thakorjitoday.Today;
+import org.app.anoopam.thakorjitoday.activities.ThakorjiTodayActivity;
 
 
-public class Dashboard extends Activity {
+public class DashboardActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class Dashboard extends Activity {
         Vibrator vs = (Vibrator) this.getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
         vs.vibrate(100);
 
-        Intent i = new Intent(getBaseContext(), Today.class);
+        Intent i = new Intent(getBaseContext(), ThakorjiTodayActivity.class);
         startActivity(i);
     }
 
@@ -41,7 +44,7 @@ public class Dashboard extends Activity {
         Vibrator vs = (Vibrator) this.getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
         vs.vibrate(100);
 
-        Intent i = new Intent(getBaseContext(), Quote.class);
+        Intent i = new Intent(getBaseContext(), QuoteActivity.class);
         startActivity(i);
     }
 
@@ -74,7 +77,7 @@ public class Dashboard extends Activity {
         Vibrator vs = (Vibrator) this.getBaseContext().getSystemService(Context.VIBRATOR_SERVICE);
         vs.vibrate(100);
 
-        Intent i = new Intent(getBaseContext(), Calendars.class);
+        Intent i = new Intent(getBaseContext(), CalendarsActivity.class);
         startActivity(i);
     }
 }

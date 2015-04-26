@@ -1,4 +1,4 @@
-package org.app.anoopam.thakorjitoday;
+package org.app.anoopam.thakorjitoday.activities;
 
 import android.app.Dialog;
 import android.app.TabActivity;
@@ -19,10 +19,10 @@ import android.widget.Toast;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
 
-import org.app.anoopam.Dashboard;
+import org.app.anoopam.activities.DashboardActivity;
 import org.app.anoopam.R;
 
-public class Today extends TabActivity {
+public class ThakorjiTodayActivity extends TabActivity {
     private TabHost mTabHost;
     public static final String PREFS_NAME = "AM";
 
@@ -46,24 +46,24 @@ public class Today extends TabActivity {
         TabHost.TabSpec spec; // Reusable TabSpec for each tab
         Intent intent; // Reusable Intent for each tab
         // Create an Intent to launch an Activity for the tab (to be reused)
-        intent = new Intent().setClass(this, Uk.class);//uk
+        intent = new Intent().setClass(this, UkThakorjiActivity.class);//uk
         spec = tabHost.newTabSpec("home").setIndicator("UK").setContent(intent);
         tabHost.addTab(spec);
 
         // Do the same for the other tabs
-        intent = new Intent().setClass(this, Mogri.class);
+        intent = new Intent().setClass(this, MogriThakorjiActivity.class);
         spec = tabHost.newTabSpec("about").setIndicator("Mogri").setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, Usa.class);//usa
+        intent = new Intent().setClass(this, UsaThakorjiActivity.class);//usa
         spec = tabHost.newTabSpec("usa").setIndicator("USA").setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, Kharghar.class);//khabarg
+        intent = new Intent().setClass(this, KhargharThakorjiActivity.class);//khabarg
         spec = tabHost.newTabSpec("kharghar").setIndicator("Kharghar").setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, Surat.class);//surat
+        intent = new Intent().setClass(this, SuratThakorjiActivity.class);//surat
         spec = tabHost.newTabSpec("surat").setIndicator("Surat").setContent(intent);
         tabHost.addTab(spec);
 
@@ -92,7 +92,7 @@ public class Today extends TabActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.settings) {
-            final Dialog dialog = new Dialog(Today.this);
+            final Dialog dialog = new Dialog(ThakorjiTodayActivity.this);
             dialog.setContentView(R.layout.settings);
             dialog.setTitle("Default Thakorji Darshan");
 
@@ -177,7 +177,7 @@ public class Today extends TabActivity {
             dialog.show();
         }
         if (item.getItemId() == R.id.previous) {
-            Intent i = new Intent(getBaseContext(), Dashboard.class);
+            Intent i = new Intent(getBaseContext(), DashboardActivity.class);
             startActivity(i);
         }
         return false;

@@ -1,4 +1,4 @@
-package org.app.anoopam;
+package org.app.anoopam.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.widget.TextView;
 
-public class QuickNews extends Activity {
+import org.app.anoopam.R;
+
+public class QuickNewsActivity extends Activity {
     public static final String PREFS_NAME = "DhruServer";
 
     @Override

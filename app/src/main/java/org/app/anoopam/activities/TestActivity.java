@@ -1,11 +1,13 @@
-package org.app.anoopam;
+package org.app.anoopam.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class Test extends Activity {
+import org.app.anoopam.R;
+
+public class TestActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

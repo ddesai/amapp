@@ -1,4 +1,4 @@
-package org.app.anoopam;
+package org.app.anoopam.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import org.app.anoopam.R;
 import org.app.anoopam.gcm.GcmUtils;
 import org.app.anoopam.thakorjitoday.TodayDateSyncer;
 
@@ -35,7 +36,7 @@ public class MainActivity extends Activity {
             public void run() {
                 try {
                     sleep(2000);
-                    Intent i = new Intent(getBaseContext(), Dashboard.class);
+                    Intent i = new Intent(getBaseContext(), DashboardActivity.class);
                     startActivity(i);
                     finish();
                     //test 

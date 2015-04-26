@@ -1,29 +1,4 @@
-package org.app.anoopam;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.app.anoopam.util.Comm;
-import org.json.JSONException;
-import org.json.JSONObject;
+package org.app.anoopam.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -40,7 +15,33 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-public class Quote extends Activity {
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.app.anoopam.R;
+import org.app.anoopam.util.Comm;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+public class QuoteActivity extends Activity {
 
     public static final String PREFS_NAME = "AM";
     AsyncTask<Void, Void, Void> mRegisterTask;
@@ -73,7 +74,7 @@ public class Quote extends Activity {
             mRegisterTask = new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected void onPreExecute() {
-                    Comm.startLoader(Quote.this);
+                    Comm.startLoader(QuoteActivity.this);
                     super.onPreExecute();
                 }
 
@@ -113,7 +114,7 @@ public class Quote extends Activity {
                     path = saveToInternalSorage(decodeBase64(QT), "Q" + pos + ".jpg");
                     editor.putString("Q" + pos, path);
                     editor.commit();
-                    Comm.stopLoader(Quote.this);
+                    Comm.stopLoader(QuoteActivity.this);
                 }
             };
             mRegisterTask.execute(null, null, null);
@@ -129,7 +130,7 @@ public class Quote extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.previous) {
-            Intent i = new Intent(getBaseContext(), Dashboard.class);
+            Intent i = new Intent(getBaseContext(), DashboardActivity.class);
             startActivity(i);
         }
         return false;

@@ -1,4 +1,4 @@
-package org.app.anoopam;
+package org.app.anoopam.activities;
 
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -28,6 +28,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.app.anoopam.CirclePageIndicator;
+import org.app.anoopam.PageIndicator;
+import org.app.anoopam.R;
 import org.app.anoopam.thakorjitoday.AMViewAdapter;
 import org.app.anoopam.util.Comm;
 import org.json.JSONException;
@@ -45,7 +48,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class Calendars extends FragmentActivity {
+public class CalendarsActivity extends FragmentActivity {
     public static final String PREFS_NAME = "AM";
     AMViewAdapter mAdapter;
     ViewPager mPager;
@@ -79,7 +82,7 @@ public class Calendars extends FragmentActivity {
 
                 @Override
                 protected void onPreExecute() {
-                    Comm.startLoader(Calendars.this);
+                    Comm.startLoader(CalendarsActivity.this);
                     super.onPreExecute();
                 }
 
@@ -123,7 +126,7 @@ public class Calendars extends FragmentActivity {
                 @Override
                 protected void onPostExecute(Void result) {
                     mRegisterTask = null;
-                    Comm.stopLoader(Calendars.this);
+                    Comm.stopLoader(CalendarsActivity.this);
                     finish();
                     startActivity(getIntent());
                 }
@@ -181,7 +184,7 @@ public class Calendars extends FragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.previous) {
-            Intent i = new Intent(getBaseContext(), Dashboard.class);
+            Intent i = new Intent(getBaseContext(), DashboardActivity.class);
             startActivity(i);
         }
         return false;

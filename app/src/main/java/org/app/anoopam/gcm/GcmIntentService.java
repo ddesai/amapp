@@ -12,7 +12,7 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
-import org.app.anoopam.MainActivity;
+import org.app.anoopam.activities.MainActivity;
 import org.app.anoopam.R;
 
 /**
