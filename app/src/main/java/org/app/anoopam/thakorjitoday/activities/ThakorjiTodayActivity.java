@@ -14,21 +14,42 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.RadioButton;
 import android.widget.TabHost;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import org.app.anoopam.activities.DashboardActivity;
 import org.app.anoopam.R;
+import org.app.anoopam.activities.DashboardActivity;
+
+//TODO: Remove the TabActivity and replace it by Fragments
 
 public class ThakorjiTodayActivity extends TabActivity {
+
+    private static final int MOGRI_THAKORJI = 0;
+    private static final int UK_THAKORJI = 1;
+    private static final int USA_THAKORJI = 2;
+    private static final int KHARGAR_THAKORJI = 3;
+    private static final int SURAT_THAKORJI = 4;
+
     private TabHost mTabHost;
     public static final String PREFS_NAME = "AM";
 
     private void setupTabHost() {
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
+    }
+
+    /**
+     * sets the default center for the Thakorji Today
+     * @param center
+     */
+    private void setDefaultCenter(int center) {
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("Default", center);
+        editor.commit();
+        Toast.makeText(getApplicationContext(), "Default Thakorji Darshan Selected...", Toast.LENGTH_LONG).show();
     }
 
     @SuppressWarnings("deprecation")
@@ -45,31 +66,37 @@ public class ThakorjiTodayActivity extends TabActivity {
         TabHost tabHost = getTabHost(); // The activity TabHost
         TabHost.TabSpec spec; // Reusable TabSpec for each tab
         Intent intent; // Reusable Intent for each tab
-        // Create an Intent to launch an Activity for the tab (to be reused)
-        intent = new Intent().setClass(this, UkThakorjiActivity.class);//uk
-        spec = tabHost.newTabSpec("home").setIndicator("UK").setContent(intent);
-        tabHost.addTab(spec);
 
-        // Do the same for the other tabs
+        // Mogri
         intent = new Intent().setClass(this, MogriThakorjiActivity.class);
-        spec = tabHost.newTabSpec("about").setIndicator("Mogri").setContent(intent);
+        spec = tabHost.newTabSpec("mogri").setIndicator("Mogri").setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, UsaThakorjiActivity.class);//usa
+        // UK
+        intent = new Intent().setClass(this, UkThakorjiActivity.class);
+        spec = tabHost.newTabSpec("uk").setIndicator("UK").setContent(intent);
+        tabHost.addTab(spec);
+
+        // USA
+        intent = new Intent().setClass(this, UsaThakorjiActivity.class);
         spec = tabHost.newTabSpec("usa").setIndicator("USA").setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, KhargharThakorjiActivity.class);//khabarg
+        // Khargar
+        intent = new Intent().setClass(this, KhargharThakorjiActivity.class);
         spec = tabHost.newTabSpec("kharghar").setIndicator("Kharghar").setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, SuratThakorjiActivity.class);//surat
+        // Surat
+        intent = new Intent().setClass(this, SuratThakorjiActivity.class);
         spec = tabHost.newTabSpec("surat").setIndicator("Surat").setContent(intent);
         tabHost.addTab(spec);
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-
-        tabHost.setCurrentTab(settings.getInt("Default", 1));
+        // sets the current tab to the default Center for thakorji Today
+        // If it doesnt get the default (previously selected and stored) from SharedPrefs
+        // then make the MOGRI center default
+        tabHost.setCurrentTab(settings.getInt("Default", MOGRI_THAKORJI));
     }
 
     private void setupTab(final View view, final String tag) {
@@ -96,86 +123,77 @@ public class ThakorjiTodayActivity extends TabActivity {
             dialog.setContentView(R.layout.settings);
             dialog.setTitle("Default Thakorji Darshan");
 
-            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-            int def = settings.getInt("Default", 1);
-            RadioButton rd1 = (RadioButton) dialog.findViewById(R.id.thakorjiuk);
+            RadioButton mogriRadioButton = (RadioButton) dialog.findViewById(R.id.thakorjimogri);
+            RadioButton ukRadioButton = (RadioButton) dialog.findViewById(R.id.thakorjiuk);
+            RadioButton usaRadioButton = (RadioButton) dialog.findViewById(R.id.thakorjiusa);
+            RadioButton khargarRadioButton = (RadioButton) dialog.findViewById(R.id.thakorjikhar);
+            RadioButton suratRadioButton = (RadioButton) dialog.findViewById(R.id.thakorjisurat);
 
-            if (def == 0) {
-                rd1.setChecked(true);
+            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+            int defaultCenter = settings.getInt("Default", MOGRI_THAKORJI);
+
+            switch(defaultCenter) {
+                case UK_THAKORJI:
+                    ukRadioButton.setChecked(true);
+                    break;
+                case USA_THAKORJI:
+                    usaRadioButton.setChecked(true);
+                    break;
+                case KHARGAR_THAKORJI:
+                    khargarRadioButton.setChecked(true);
+                    break;
+                case SURAT_THAKORJI:
+                    suratRadioButton.setChecked(true);
+                    break;
+                default:
+                    mogriRadioButton.setChecked(true);
+                    break;
             }
-            rd1.setOnClickListener(new OnClickListener() {
+
+            // Mogri Thakorji
+            mogriRadioButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putInt("Default", 0);
-                    editor.commit();
-                    Toast.makeText(getApplicationContext(), "Default Thakorji Darshan Selected...", Toast.LENGTH_LONG).show();
+                    setDefaultCenter(MOGRI_THAKORJI);
                     dialog.dismiss();
                 }
             });
-            RadioButton rd2 = (RadioButton) dialog.findViewById(R.id.thakorjimogri);
-            if (def == 1) {
-                rd2.setChecked(true);
-            }
-            rd2.setOnClickListener(new OnClickListener() {
+
+            ukRadioButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putInt("Default", 1);
-                    editor.commit();
-                    Toast.makeText(getApplicationContext(), "Default Thakorji Darshan Selected...", Toast.LENGTH_LONG).show();
+                    setDefaultCenter(UK_THAKORJI);
                     dialog.dismiss();
                 }
             });
-            RadioButton rd3 = (RadioButton) dialog.findViewById(R.id.thakorjiusa);
-            if (def == 2) {
-                rd3.setChecked(true);
-            }
-            rd3.setOnClickListener(new OnClickListener() {
+
+            usaRadioButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putInt("Default", 2);
-                    Toast.makeText(getApplicationContext(), "Default Thakorji Darshan Selected...", Toast.LENGTH_LONG).show();
-                    editor.commit();
+                    setDefaultCenter(USA_THAKORJI);
                     dialog.dismiss();
                 }
             });
-            RadioButton rd4 = (RadioButton) dialog.findViewById(R.id.thakorjikhar);
-            if (def == 3) {
-                rd4.setChecked(true);
-            }
-            rd4.setOnClickListener(new OnClickListener() {
+
+            khargarRadioButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putInt("Default", 3);
-                    Toast.makeText(getApplicationContext(), "Default Thakorji Darshan Selected...", Toast.LENGTH_LONG).show();
-                    editor.commit();
+                    setDefaultCenter(KHARGAR_THAKORJI);
                     dialog.dismiss();
                 }
             });
-            RadioButton rd5 = (RadioButton) dialog.findViewById(R.id.thakorjisurat);
-            if (def == 5) {
-                rd5.setChecked(true);
-            }
-            rd5.setOnClickListener(new OnClickListener() {
+
+            suratRadioButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putInt("Default", 4);
-                    Toast.makeText(getApplicationContext(), "Default Thakorji Darshan Selected...", Toast.LENGTH_LONG).show();
-                    editor.commit();
+                    setDefaultCenter(SURAT_THAKORJI);
                     dialog.dismiss();
                 }
             });
+
             dialog.show();
         }
+
         if (item.getItemId() == R.id.previous) {
             Intent i = new Intent(getBaseContext(), DashboardActivity.class);
             startActivity(i);
