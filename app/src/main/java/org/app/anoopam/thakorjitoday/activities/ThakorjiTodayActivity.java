@@ -1,6 +1,5 @@
 package org.app.anoopam.thakorjitoday.activities;
 
-import android.app.Dialog;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,11 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.RadioButton;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
@@ -20,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.app.anoopam.R;
-import org.app.anoopam.activities.DashboardActivity;
 
 //TODO: Remove the TabActivity and replace it by Fragments
 
@@ -108,97 +102,6 @@ public class ThakorjiTodayActivity extends TabActivity {
             }
         });
         mTabHost.addTab(setContent);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.thakorji, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.settings) {
-            final Dialog dialog = new Dialog(ThakorjiTodayActivity.this);
-            dialog.setContentView(R.layout.settings);
-            dialog.setTitle("Default Thakorji Darshan");
-
-            RadioButton mogriRadioButton = (RadioButton) dialog.findViewById(R.id.thakorjimogri);
-            RadioButton ukRadioButton = (RadioButton) dialog.findViewById(R.id.thakorjiuk);
-            RadioButton usaRadioButton = (RadioButton) dialog.findViewById(R.id.thakorjiusa);
-            RadioButton khargarRadioButton = (RadioButton) dialog.findViewById(R.id.thakorjikhar);
-            RadioButton suratRadioButton = (RadioButton) dialog.findViewById(R.id.thakorjisurat);
-
-            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-            int defaultCenter = settings.getInt("Default", MOGRI_THAKORJI);
-
-            switch(defaultCenter) {
-                case UK_THAKORJI:
-                    ukRadioButton.setChecked(true);
-                    break;
-                case USA_THAKORJI:
-                    usaRadioButton.setChecked(true);
-                    break;
-                case KHARGAR_THAKORJI:
-                    khargarRadioButton.setChecked(true);
-                    break;
-                case SURAT_THAKORJI:
-                    suratRadioButton.setChecked(true);
-                    break;
-                default:
-                    mogriRadioButton.setChecked(true);
-                    break;
-            }
-
-            // Mogri Thakorji
-            mogriRadioButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setDefaultCenter(MOGRI_THAKORJI);
-                    dialog.dismiss();
-                }
-            });
-
-            ukRadioButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setDefaultCenter(UK_THAKORJI);
-                    dialog.dismiss();
-                }
-            });
-
-            usaRadioButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setDefaultCenter(USA_THAKORJI);
-                    dialog.dismiss();
-                }
-            });
-
-            khargarRadioButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setDefaultCenter(KHARGAR_THAKORJI);
-                    dialog.dismiss();
-                }
-            });
-
-            suratRadioButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setDefaultCenter(SURAT_THAKORJI);
-                    dialog.dismiss();
-                }
-            });
-
-            dialog.show();
-        }
-
-        if (item.getItemId() == R.id.previous) {
-            Intent i = new Intent(getBaseContext(), DashboardActivity.class);
-            startActivity(i);
-        }
-        return false;
     }
 
     private static View createTabView(final Context context, final String text) {
